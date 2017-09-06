@@ -49,3 +49,8 @@ store.dispatch({
     title: 'Learn Redux in 24h'
   }
 });
+
+store.dispatch({
+  type: "ADD_TO_CART",
+  payload: [{id: 2}]
+})
