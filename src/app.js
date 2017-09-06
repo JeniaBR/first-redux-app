@@ -1,7 +1,8 @@
 "use strict"
 import {createStore} from 'redux';
 import reducers from './reducers/index';
-
+import {addToCart} from './actions/cartActions';
+import {deleteBooks, postBooks, updateBooks} from './actions/booksActions';
 
 // create a store
 const store = createStore(reducers);
@@ -11,9 +12,8 @@ store.subscribe(() => {
 });
 
 // create and dispatch actions
-store.dispatch({
-  type: "POST_BOOK",
-  payload: [{
+store.dispatch(postBooks(
+  [{
     id: 1,
     title: 'This is the book title',
     description: 'This is a book description',
@@ -25,32 +25,24 @@ store.dispatch({
     description: 'This is a second book description',
     price: 33.33
   }]
-});
+));
 
-store.dispatch({
-  type: "POST_BOOK",
-  payload: [{
+store.dispatch(postBooks(
+  [{
     id: 3,
     title: 'This is the third book title',
     description: 'This is a third book description',
     price: 8.3
   }]
-});
+));
 
-store.dispatch({
-  type: "DELETE_BOOK",
-  payload: {id: 1}
-});
+store.dispatch(deleteBooks({id: 1}));
 
-store.dispatch({
-  type: "UPDATE_BOOK",
-  payload: {
+store.dispatch(updateBooks(
+  {
     id: 2,
     title: 'Learn Redux in 24h'
   }
-});
+));
 
-store.dispatch({
-  type: "ADD_TO_CART",
-  payload: [{id: 2}]
-})
+store.dispatch(addToCart([{id: 2}]));
