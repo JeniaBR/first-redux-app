@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {getBooks} from '../../actions/booksActions';
 import {Grid, Col, Row, Button} from 'react-bootstrap';
+import BookItem from './bookItem';
 
 class BooksList extends React.Component {
 
@@ -14,12 +15,13 @@ class BooksList extends React.Component {
   render() {
     const booksList = this.props.books.map((book)=> {
       return(
-        <div key={book.id}>
-          <h2>{book.title}</h2>
-          <h2>{book.description}</h2>
-          <h2>{book.price}</h2>
-          <Button bsStyle="primary">Buy Now</Button>
-        </div>
+        <Col xs={12} sm={3} md={4} key={book.id}>
+          <BookItem
+             id={book.id}
+             title={book.title}
+             description={book.description}
+             price={book.price}/>  
+        </Col>
       );
     });
     return(
